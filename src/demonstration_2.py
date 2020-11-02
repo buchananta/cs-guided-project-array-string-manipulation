@@ -27,4 +27,29 @@ Explanation: The input array represents the integer 999. 999 + 1 = 1000.
 """
 def plus_one(digits):
     # Your code here
+    i = len(digits) -1
+    while digits[i] == 9:
+        digits[i] = 0
+        i -= 1
+        if i < 0:
+            return [1] + digits
+    digits[i] += 1
+    return digits
 
+def plus_one_instructor(digits):
+    for i in range(len(digits) -1, -1, -1):
+        if digits[i] == 9:
+            digits[i] = 0
+        else:
+            digits[i] += 1
+            return digits
+    return [1] + digits
+
+if __name__ == "__main__":
+    print(plus_one([9,9,9,9]))
+
+    print(plus_one([1,2,3,4]))
+
+    print(plus_one([1,9,9,9]))
+
+    print(plus_one_instructor([9,9,9,9,9]))

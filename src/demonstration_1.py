@@ -22,4 +22,34 @@ There is no index that satisfies the conditions in the problem statement.
 """
 def pivot_index(nums):
     # Your code here
+    for i in range(len(nums)):
+        if sum(nums[0:i]) == sum(nums[i+1:]):
+            return i
+    return -1
+
+def pivot_index_faster(nums):
+    left = 0
+    right = sum(nums[1:])
+    if right == 0:
+      return 0
+    for i in range(1,len(nums)):
+        left += nums[i-1]
+        if i+2 < len(nums):
+            right -= nums[i]
+        else:
+            return -1
+        if left == right:
+            return i
+        
+def pivot_index_simpler(nums):
+    left = 0
+    right = sum(nums)
+    for i, num in enumerate(nums):
+        right -= num
+        if right == left:
+            return i
+        left += num
+    return -1
+if __name__ == '__main__':
+    print(pivot_index_simpler([1,7,3,6,5,6]))
 
